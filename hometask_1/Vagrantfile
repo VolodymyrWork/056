@@ -1,0 +1,34 @@
+#ubuntu
+Vagrant.configure("2") do |config|
+  config.vm.define "ubuntu" do |ub|
+  ub.vm.box = "ubuntu/bionic64"
+  ub.vm.provider "virtualbox" do |vb|
+
+
+   end
+
+   ub.vm.box_check_update = false
+ 
+  ub.vm.network "forwarded_port", guest: 80, host: 8080
+
+
+ ub.vm.provision "shell", inline: <<-SHELL
+ apt-get update
+ apt-get install -y apache2
+ SHELL
+ 
+end
+
+#centos
+
+   config.vm.define "centos" do |cent|
+  cent.vm.box = "centos/7"
+  cent.vm.provider "virtualbox" do |vb|
+
+
+   end
+
+   cent.vm.box_check_update = false
+ 
+  end
+end
